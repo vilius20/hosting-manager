@@ -1,0 +1,6 @@
+{
+  "require": {
+    "guzzlehttp/guzzle": "^7.4",
+    "time4vps/lib": "^1.0"
+  }
+}
