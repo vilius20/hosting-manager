@@ -17,7 +17,7 @@ session_start();
         <?php
     if (isset($_SESSION['userid'])) {
       ?>
-        <li><a href="#"><?php echo $_SESSION['username']; ?></a></li>
+        <li><a href="#"><?php echo $_SESSION['firstname']; ?></a></li>
         <li><a href="includes/logout.php">LOGOUT</a></li>
         <?php }
       else {

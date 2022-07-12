@@ -1,1 +1,1 @@
-## VPS Servers Manager
+## VPS Server Manager

@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__.'/../../vendor/autoload.php';
-use GuzzleHttp\Client;
 
 class SignupContr extends Signup{
 
@@ -50,10 +49,6 @@ class SignupContr extends Signup{
         } 
         if($this->emailTakenCheck() == false) {
             header("location: ../index.php?error=emailtaken");
-            exit(); 
-        }
-        if($this->apiUserCreate() == false) {
-            header("location: ../index.php?error=apierror");
             exit(); 
         }
 
@@ -117,52 +112,6 @@ class SignupContr extends Signup{
         } else {
             $result = true;
         }
-        return $result;
-    }
-
-    private function apiUserCreate() {
-        $result = false;
-        $client = new Client([
-            'base_uri' => 'https://billing.time4vps.com',
-            'auth' => [$this->email, $this->pwd],
-            'defaults' => [ 'exceptions' => false ],
-            'http_errors' => false
-        ]);
-        
-        $resp = $client->post('/api/signup', [
-            'json' => [
-                "email" => $this->email,
-                "password" => $this->pwd,
-                "firstname" => $this->first_name,
-                "lastname" => $this->last_name,
-                "country" => $this->country,
-                "address1" => $this->address,
-                "city" => $this->city,
-                "currency" => "EUR"
-            ]
-        ]);
-
-        $res = json_decode($resp->getBody(), true);
-        if ($res['info'][0] == 'client_registered' && $resp->getStatusCode() == 200) {
-            $result = true;
-        } else {
-            $result = false;
-            print_r($res['error']);
-            die();
-        }
-
-        // if ($res['error'] && $res['info']) {
-        //    print_r($res['info'][0]);
-        // }else {
-        //     print_r($res['error']);
-        // }
-
-        // if ($resp->getStatusCode() == 200) {
-        //     $result = true;
-        // } else {
-        //     $result = false;
-        // }
-
         return $result;
     }
 

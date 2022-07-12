@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../../vendor/autoload.php';
+use GuzzleHttp\Client;
 
 class Login extends Db {
 
@@ -42,9 +44,15 @@ class Login extends Db {
 
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            $client = new Client([
+                'base_uri' => 'https://billing.time4vps.com',
+                'auth' => [$email, $pwd]
+            ]);
+            setcookie('time4vps', json_encode($client));
+
             session_start();
             $_SESSION["userid"] = $user[0]["users_id"];
-            $_SESSION["username"] = $user[0]["users_name"];
+            $_SESSION["firstname"] = $user[0]["users_name"];
 
             $stmt = null;
         }
