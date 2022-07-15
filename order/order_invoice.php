@@ -5,13 +5,13 @@ require __DIR__.'/../api/order.php';
 
 if(isset($_POST['submit'])) {
     // Data
-    $service_id = $_POST['service_id']; 
+    $service_id = $_POST['service_id'];
+    $service_name = $_POST['service_name'];
     $pay_period = $_POST['pay_period'];
     $pay_total = $_POST['pay_total'];
     $pay_bank_method = $_POST['bank_transfer'];
 
-    $order_details = order_send($service_id, $pay_period, $_SESSION["userid"]);
-    print_r(order_send($service_id, $pay_period, $_SESSION["userid"]));
+    $order_details = order_send($service_id, $pay_period, $service_name, $_SESSION["userid"]);
     // Order number
     $order_num = explode(':', $order_details[0]);
     // Invoice info

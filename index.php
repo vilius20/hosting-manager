@@ -19,6 +19,7 @@ session_start();
       ?>
         <li><a href="#"><?php echo $_SESSION['firstname']; ?></a></li>
         <li><a href="includes/logout.php">LOGOUT</a></li>
+        <li><a href="includes/logout.php">ORDERS</a></li>
         <?php }
       else {
         ?>

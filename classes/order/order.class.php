@@ -2,11 +2,11 @@
 
 class Order extends Db {
 
-    protected function putOrderInfo($order_num, $invoice_info, $order_id, $product_id, $total_price, $user_id) {
-        $stmt = $this->connect()->prepare('INSERT INTO orders (user_id, order_number, order_id, invoice_id, product_id, total_price) VALUES (?, ?, ?, ?, ?, ?);');
+    protected function putOrderInfo($order_num, $invoice_info, $order_id, $product_id, $total_price, $service_type, $service_name, $user_id) {
+        $stmt = $this->connect()->prepare('INSERT INTO orders (user_id, order_number, order_id, invoice_id, product_id, service_type, service_name, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
 
 
-        if(!$stmt->execute(array($user_id, $order_num, $order_id, $invoice_info, $product_id, $total_price))) {
+        if(!$stmt->execute(array($user_id, $order_num, $order_id, $invoice_info, $product_id, $service_type, $service_name, $total_price))) {
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();

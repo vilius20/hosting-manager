@@ -4,7 +4,7 @@ include __DIR__.'/../classes/db.class.php';
 include __DIR__.'/../classes/order/order.class.php';
 include __DIR__.'/../classes/order/order-contr.class.php';
 
-function order_send($id, $cycle, $user_id) {
+function order_send($id, $cycle, $service_name, $user_id) {
 
     $resp = client()->post("/api/order/$id", [
         'json' => [
@@ -29,10 +29,12 @@ function order_send($id, $cycle, $user_id) {
     $product_id = explode(':', $info[7]);
     // Total price
     $total_price = explode(':', $info[2]);
+    // Service type
+    $service_type = explode(':', $info[4]);
 
 
     if ($resp->getStatusCode() === 200) {
-      $order = new OrderContr($order_num[1], $invoice_info[1], $order_id[1], $product_id[1], $total_price[1], $user_id);
+      $order = new OrderContr($order_num[1], $invoice_info[1], $order_id[1], $product_id[1], $total_price[1], $service_type[1], $service_name, $user_id);
       $order->order();
     }
     
