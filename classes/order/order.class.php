@@ -2,11 +2,11 @@
 
 class Order extends Db {
 
-    protected function putOrderInfo() {
-        $stmt = $this->connect()->prepare('INSERT INTO orders (users_name, users_lastname, users_pwd, users_email, users_country, users_city, users_address) VALUES (?, ?, ?, ?, ?, ?, ?);');
+    protected function putOrderInfo($order_num, $invoice_info, $order_id, $product_id, $total_price, $user_id) {
+        $stmt = $this->connect()->prepare('INSERT INTO orders (user_id, order_number, order_id, invoice_id, product_id, total_price) VALUES (?, ?, ?, ?, ?, ?);');
 
 
-        if(!$stmt->execute(array($first_name, $last_name, $hashedPwd, $email, $country, $city, $address))) {
+        if(!$stmt->execute(array($user_id, $order_num, $order_id, $invoice_info, $product_id, $total_price))) {
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();
@@ -15,6 +15,18 @@ class Order extends Db {
         $stmt = null;
     }
 
-    
+    protected function getOrderInfo($user_id){
+        $stmt = $this->connect()->prepare('SELECT * FROM orders WHERE user_id = ?;');
+
+
+        if(!$stmt->execute(array($user_id))) {
+            $stmt = null;
+            header("location: ../index.php?error=stmtfailed");
+            exit();
+        }
+
+        
+        return $stmt->fetchAll();
+    }
 
 }

@@ -4,15 +4,13 @@ require __DIR__.'/../api/auth.php';
 $resp = client()->get('/api/category')->getBody();
 $res = json_decode($resp, true);
 
-// print_r($res['categories']);
-// print_r($res);
 ?>
 
 <?php 
 foreach ($res['categories'] as $option) {
 ?>
 
-<form action="service_info.php" method="post">
+<form action="services/service_info.php" method="post">
     <h2>
         <?php echo $option['name'] ?>
     </h2>

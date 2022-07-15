@@ -21,6 +21,7 @@ if(isset($_POST['submit'])) {
     <h3>Payment method: </h3>
     <label for="bank_transfer">Bank transfer</label>
     <input type="hidden" name="service_id" id="service_id" value="<?php echo $service_id; ?>">
+    <input type="hidden" name="service_name" id="service_name" value="<?php echo $service_name; ?>">
     <input type="hidden" name="pay_total" id="pay_total" value="<?php echo lt_vat($pay_info_arr[2]); ?>">
     <input type="hidden" name="pay_period" id="pay_period" value="<?php echo $pay_info_arr[0]; ?>">
     <input type="radio" id="bank_transfer" value="bank_transfer" name="bank_transfer" required>

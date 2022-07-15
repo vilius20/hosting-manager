@@ -28,6 +28,7 @@ session_start();
       }
       ?>
         <h1>Host VPS servers!</h1>
+        <?php include 'services/services_list.php' ?>
     </section>
 </body>
 
