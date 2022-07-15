@@ -1,22 +1,22 @@
 <?php
+session_start();
 require __DIR__.'/../api/auth.php';
 require __DIR__.'/../vat/lt_vat.php';
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit']) && isset($_SESSION['userid'])) {
     // Data
     $id = $_POST['service_id']; 
     $resp = client()->get("/api/category/$id/product")->getBody();
     $res = json_decode($resp, true);
-    // print_r($res['products']);
+    include __DIR__.'/../includes/header.php';
 ?>
+<h2>Choose plan</h2>
 <?php
     foreach ($res['products'] as $order) {
 ?>
 <form action="../order/order_checkout.php" method="post">
-
-
-    <h2><?php echo $order['name']?></h2>
-    <h2><?php echo $order['description']?></h2>
+    <h3><?php echo $order['name']?></h3>
+    <h4><?php echo $order['description']?></h4>
     <input type="hidden" name="service_id" value="<?php echo $order['id'] ?>">
     <input type="hidden" name="service_name" value="<?php echo $order['name'] ?>">
     <input type="hidden" name="service_description" value="<?php echo $order['description'] ?>">
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])) {
             foreach ($order['periods'] as $price) {
         ?>
         <option value="<?php echo $price['value'].' '.$price['title'].' '.$price['price'] ?>">
-            <?php echo $price['title'].' '.lt_vat($price['price']) ?></option>
+            <?php echo $price['title'].' '.lt_vat($price['price']) ?> EUR</option>
         <?php
             }
         ?>

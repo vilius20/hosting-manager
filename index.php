@@ -13,13 +13,14 @@ session_start();
 </head>
 
 <body>
+    <?php include 'includes/header.php' ?>
     <section>
         <?php
     if (isset($_SESSION['userid'])) {
       ?>
         <li><a href="#"><?php echo $_SESSION['firstname']; ?></a></li>
         <li><a href="includes/logout.php">LOGOUT</a></li>
-        <li><a href="includes/logout.php">ORDERS</a></li>
+        <li><a href="order/order_show.php">ORDERS</a></li>
         <?php }
       else {
         ?>
@@ -29,7 +30,15 @@ session_start();
       }
       ?>
         <h1>Host VPS servers!</h1>
-        <?php include 'services/services_list.php' ?>
+        <?php if (isset($_SESSION['userid'])) {
+          include 'services/services_list.php';
+        }
+        else {
+          ?>
+        <h3>Login or register to order services</h3>
+        <?php
+        }
+        ?>
     </section>
 </body>
 

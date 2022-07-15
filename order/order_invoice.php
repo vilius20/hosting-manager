@@ -3,7 +3,8 @@ session_start();
 require __DIR__.'/../vat/lt_vat.php';
 require __DIR__.'/../api/order.php';
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit']) && isset($_SESSION['userid'])) {
+    include __DIR__.'/../includes/header.php';
     // Data
     $service_id = $_POST['service_id'];
     $service_name = $_POST['service_name'];

@@ -1,16 +1,17 @@
 <?php
+session_start();
 require __DIR__.'/../vat/lt_vat.php';
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit']) && isset($_SESSION['userid'])) {
+    include __DIR__.'/../includes/header.php';
     // Data
     $service_id = $_POST['service_id']; 
     $service_name = $_POST['service_name']; 
     $service_description = $_POST['service_description']; 
     $pay_info = $_POST['pay_info'];
     $pay_info_arr = explode(' ', $pay_info);
-
-
 ?>
+<a href="../index.php">Back</a>
 <h2>Select payment method and confirm order</h2>
 <h3>Total price: </h3>
 <p><?php echo $pay_info_arr[1].' '.lt_vat($pay_info_arr[2]); ?> EUR</p>
