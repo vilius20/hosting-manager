@@ -3,7 +3,7 @@
 class Signup extends Db {
 
     protected function setUser($first_name, $last_name, $pwd, $email, $country, $city, $address) {
-        $stmt = $this->connect()->prepare('INSERT INTO users (users_name, users_lastname, users_pwd, users_email, users_country, users_city, users_address) VALUES (?, ?, ?, ?, ?, ?, ?);');
+        $stmt = $this->connect()->prepare('INSERT INTO users (users_firstname, users_lastname, users_pwd, users_email, users_country, users_city, users_address) VALUES (?, ?, ?, ?, ?, ?, ?);');
 
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 

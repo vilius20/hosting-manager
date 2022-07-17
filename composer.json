@@ -2,6 +2,7 @@
   "require": {
     "guzzlehttp/guzzle": "^7.4",
     "time4vps/lib": "^1.0",
-    "vlucas/phpdotenv": "^5.4"
+    "vlucas/phpdotenv": "^5.4",
+    "phpunit/phpunit": "^9"
   }
 }

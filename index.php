@@ -13,7 +13,7 @@ session_start();
 </head>
 
 <body>
-    <?php include 'includes/header.php' ?>
+    <?php include __DIR__.'/body/header.php' ?>
     <section>
         <?php
     if (isset($_SESSION['userid'])) {
@@ -23,15 +23,12 @@ session_start();
         <li><a href="order/order_show.php">ORDERS</a></li>
         <?php }
       else {
-        ?>
-        <li><a href="register.php">REGISTER</a></li>
-        <li><a href="login.php">LOGIN</a></li>
-        <?php
+        include __DIR__.'/body/auth.php';
       }
       ?>
         <h1>Host VPS servers!</h1>
         <?php if (isset($_SESSION['userid'])) {
-          include 'services/services_list.php';
+          include __DIR__.'/services/list.php';
         }
         else {
           ?>

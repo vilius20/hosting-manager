@@ -1,18 +1,19 @@
 <?php
 session_start();
-require __DIR__.'/../api/auth.php';
 require __DIR__.'/../vat/lt_vat.php';
+include __DIR__.'/../classes/api/services/services.class.php';
+include __DIR__.'/../classes/api/services/info-contr.class.php';
+include __DIR__.'/../body/header.php';
 
 if(isset($_POST['submit']) && isset($_SESSION['userid'])) {
-    // Data
-    $id = $_POST['service_id']; 
-    $resp = client()->get("/api/category/$id/product")->getBody();
-    $res = json_decode($resp, true);
-    include __DIR__.'/../includes/header.php';
+    $id = $_POST['service_id'];
+    $service = new InfoContr($id);
+    $service_info = $service->getInfo();
+
 ?>
 <h2>Choose plan</h2>
 <?php
-    foreach ($res['products'] as $order) {
+    foreach ($service_info as $order) {
 ?>
 <form action="../order/order_checkout.php" method="post">
     <h3><?php echo $order['name']?></h3>
