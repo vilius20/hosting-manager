@@ -4,7 +4,7 @@
     stopOnFailure="false">
 
     <testsuites>
-        <testsuite name="Order">
+        <testsuite name="Vat">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
