@@ -1,6 +1,7 @@
 <?php
 
-class OrderContr extends Order{
+class OrderContr extends Order
+{
 
     private $order_num;
     private $invoice_info;
@@ -11,7 +12,22 @@ class OrderContr extends Order{
     private $service_name;
     private $user_id;
 
-    public function __construct($order_num, $invoice_info, $order_id, $product_id, $total_price, $service_type, $service_name, $user_id) {
+    /**
+     * Construct.
+     * 
+     * @param string $order_num    Order number
+     * @param string $invoice_info Invoice info
+     * @param string $order_id     Order id
+     * @param string $product_id   Product id
+     * @param string $total_price  Total price
+     * @param string $service_type Service type
+     * @param string $serice_name  Service name
+     * @param int    $user_id      User id
+     * 
+     * @return void
+     */
+    public function __construct($order_num, $invoice_info, $order_id, $product_id, $total_price, $service_type, $service_name, $user_id)
+    {
         
         $this->order_num = $order_num;
         $this->invoice_info = $invoice_info;
@@ -24,9 +40,15 @@ class OrderContr extends Order{
 
     }      
 
-        public function order() {
+    /**
+     * Construct.
+     * 
+     * @return void
+     */
+    public function order()
+    {
 
-            $this->putOrderInfo($this->order_num, $this->invoice_info, $this->order_id, $this->product_id, $this->total_price, $this->service_type, $this->service_name, $this->user_id);
-        }
-
+        $this->putOrderInfo($this->order_num, $this->invoice_info, $this->order_id, $this->product_id, $this->total_price, $this->service_type, $this->service_name, $this->user_id);
     }
+
+}

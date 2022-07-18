@@ -1,9 +1,16 @@
 <?php
 
-class ListContr extends Category{    
-
-        public function getList() {
-            return $this->list();
-        }
-
+class ListContr extends Category
+{
+    
+    /**
+     * Get products list.
+     *
+     * @return array
+     */
+    public function getList()
+    {
+        return $this->list();
     }
+
+}

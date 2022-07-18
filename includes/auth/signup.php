@@ -18,5 +18,8 @@ if(isset($_POST['submit'])) {
 
     $signup->signupUser();
 
-    header("location: ../index.php?error=none");
+    session_start();
+    header("location: ../../index.php");
+    unset($_SESSION["error"]);
+    $_SESSION["success"] = "Registration successful!";
 }

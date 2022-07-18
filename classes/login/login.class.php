@@ -1,42 +1,61 @@
 <?php
 
-class Login extends Db {
+class Login extends Db
+{
 
-    protected function getUser($email, $pwd) {
+    /**
+     * Loging user.
+     * 
+     * @param string $email Email
+     * @param string $pwd   Password
+     * 
+     * @return void
+     */
+    protected function getUser($email, $pwd) :void
+    {
         $stmt = $this->connect()->prepare('SELECT users_pwd FROM users WHERE users_email = ?;');
 
 
-        if(!$stmt->execute(array($email))) {
+        if (!$stmt->execute(array($email))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed");
+            session_start();
+            header("location: ../../index.php");
+            $_SESSION["error"] = "Error, try again later...";
             exit();
         }
 
-        if($stmt->rowCount() == 0) {
+        if ($stmt->rowCount() == 0) {
             $stmt =null;
-            header("location: ../index.php?error=usernotfound");
+            session_start();
+            header("location: ../../index.php");
+            $_SESSION["error"] = "User not found...";
             exit();
         }
 
         $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $checkPwd = password_verify($pwd, $pwdHashed[0]["users_pwd"]);
 
-        if($checkPwd == false) {
+        if ($checkPwd == false) {
             $stmt =null;
-            header("location: ../index.php?error=wrongpass");
+            session_start();
+            header("location: ../../index.php");
+            $_SESSION["error"] = "Wrong password...";
             exit();
-        } elseif($checkPwd == true) {
+        } elseif ($checkPwd == true) {
             $stmt = $this->connect()->prepare('SELECT * FROM users WHERE users_email= ? OR users_email = ? AND users_pwd= ?;');
 
-            if(!$stmt->execute(array($email, $email, $pwd))) {
+            if (!$stmt->execute(array($email, $email, $pwd))) {
                 $stmt = null;
-                header("location: ../index.php?error=stmtfailed");
+                session_start();
+                header("location: ../../index.php");
+                $_SESSION["error"] = "Error, try again later...";
                 exit();
             }
 
-            if($stmt->rowCount() == 0) {
-                $stmt =null;
-                header("location: ../index.php?error=usernotfound2");
+            if ($stmt->rowCount() == 0) {
+                session_start();
+                header("location: ../../index.php");
+                $_SESSION["error"] = "User not found...";
                 exit();
             }
 

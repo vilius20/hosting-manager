@@ -1,15 +1,30 @@
 <?php
 
-class InfoContr extends Category {
+class InfoContr extends Category
+{
     private $id;
 
-    public function __construct($id) {
+    /**
+     * Construct.
+     * 
+     * @param int $id Product id
+     * 
+     * @return void
+     */
+    public function __construct($id)
+    {
         
         $this->id= $id;
 
     }
 
-    public function getInfo() {
+    /**
+     * Get order information from database.
+     *
+     * @return array
+     */
+    public function getInfo()
+    {
         return $this->info($this->id);
     }
 }
