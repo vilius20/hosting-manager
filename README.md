@@ -28,3 +28,7 @@ With VPS Server Manager you can:
 - Import hosting.sql file inside database
 - Run composer update and all done!
 - http://localhost/hosting-manager/index.php
+
+- Optional
+- Download Nodejs from https://nodejs.org/en/ [Nodejs](https://nodejs.org/en/) "Recommended For Most Users"
+- run npm install
