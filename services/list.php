@@ -18,5 +18,7 @@ $service = new ListContr();
                     <button type="submit" name="submit">Order</button>
             </div>
         </form>
-    <?php } ?>
+    <?php
+ } 
+ ?>
 </div>

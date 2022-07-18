@@ -35,3 +35,5 @@ if (isset($_SESSION['userid'])) {
 </div>
     <?php
 }
+
+include __DIR__.'/../body/footer.php';

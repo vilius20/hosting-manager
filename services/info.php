@@ -41,6 +41,7 @@ if(isset($_POST['submit']) && isset($_SESSION['userid'])) {
     } ?>
     </div>
     <?php 
+    include __DIR__.'/../body/footer.php';
 } else {
     echo '<h3>Return to order page and try again!</h3>';
 }

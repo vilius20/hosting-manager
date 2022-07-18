@@ -43,6 +43,7 @@ session_start();
         }
         ?>
     </section>
+        <?php include __DIR__.'/body/footer.php'; ?>
     <script src="js/main.js"></script>
 </body>
 
